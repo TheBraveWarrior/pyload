@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/local/bin/python2
 # -*- coding: utf-8 -*-
 #
 #Copyright (C) 2011 RaNaN
