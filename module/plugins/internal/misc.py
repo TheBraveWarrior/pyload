@@ -8,6 +8,7 @@ from __future__ import with_statement
 import datetime
 import hashlib
 import itertools
+import json
 import os
 import re
 import shutil
@@ -23,11 +24,6 @@ import xml.sax.saxutils  # @TODO: Remove in 0.4.10
 import zlib
 
 try:
-    import simplejson as json
-except ImportError:
-    import json
-
-try:
     from functools import reduce
 except ImportError:
     reduce = reduce
@@ -41,7 +37,7 @@ except ImportError:
 class misc(object):
     __name__ = "misc"
     __type__ = "plugin"
-    __version__ = "0.48"
+    __version__ = "0.49"
     __status__ = "stable"
 
     __pattern__ = r'^unmatchable$'
@@ -834,7 +830,7 @@ def parse_html_form(attr_str, html, input_names={}):
             else:
                 return action, inputs  #: Passed attribute check
 
-    return {}, None  #: No matching form found
+    return None, None  #: No matching form found
 
 
 def chunks(iterable, size):

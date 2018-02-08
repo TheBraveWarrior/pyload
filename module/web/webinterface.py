@@ -17,20 +17,18 @@
     @author: RaNaN
 """
 
-from module.common.json_layer import json
-
-import sys
-import module.common.pylgettext as gettext
-
+import json
 import os
-from os.path import join, abspath, dirname, exists
 from os import makedirs
+from os.path import join, abspath, dirname, exists
+import sys
 
 PROJECT_DIR = abspath(dirname(__file__))
 PYLOAD_DIR = abspath(join(PROJECT_DIR, "..", ".."))
 
 sys.path.append(PYLOAD_DIR)
 
+import module.common.pylgettext as gettext
 from module import InitHomeDir
 from module.utils import decode, formatSize
 
@@ -100,10 +98,7 @@ env.filters["decode"] = decode
 env.filters["type"] = lambda x: str(type(x))
 env.filters["formatsize"] = formatSize
 env.filters["getitem"] = lambda x, y: x.__getitem__(y)
-if PREFIX:
-    env.filters["url"] = lambda x: x
-else:
-    env.filters["url"] = lambda x: PREFIX + x if x.startswith("/") else x
+env.filters["url"] = lambda x: PREFIX + x if x.startswith("/") else x
 
 gettext.setpaths([join(os.sep, "usr", "share", "pyload", "locale"), None])
 translation = gettext.translation("django", join(PYLOAD_DIR, "locale"),
